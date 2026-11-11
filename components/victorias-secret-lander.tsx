@@ -1,27 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 
-const AFFILIATE_LINK = "https://giftclick.org/aff_c?offer_id=2412&aff_id=26188"
+const AFFILIATE_LINK = "https://linkthem.net/?offer_id=2412&aff_id=26188"
 
-const ACCENT = "#F6A8C3"
-const ACCENT_STRONG = "#B8406C"
-const ACCENT_DEEP = "#E9799F"
-const ACCENT_PALE = "#FBD3E1"
-const ACCENT_TINT = "#FDEAF1"
-const ACCENT_NUMERAL = "#FAD6E3"
-const INK = "#1C1917"
-
-const HERO_GRADIENT = `linear-gradient(165deg, ${ACCENT_PALE} 0%, ${ACCENT} 50%, #EE93B4 100%)`
-
-const BRA_ICON =
-  "M3 11h18 M3 11c0 3.6 2.2 5.6 4.6 5.6S12 14.6 12 12.4c0 2.2 2 4.2 4.4 4.2S21 14.6 21 11 M6 11l1.6-7 M18 11l-1.6-7"
-const BRIEFS_ICON =
-  "M3 6.5h18 M3 6.5l1.2 4.3c3.6.8 6 3.6 6.6 7.7h2.4c.6-4.1 3-6.9 6.6-7.7L21 6.5"
-const PERFUME_ICON =
-  "M9.5 3h5v3h-5z M11 6v2 M13 6v2 M6.5 8h11A1.5 1.5 0 0119 9.5V19a2 2 0 01-2 2H7a2 2 0 01-2-2V9.5A1.5 1.5 0 016.5 8z M9 14.5h6"
-const HOODIE_ICON =
-  "M8.5 4.5C9.3 3.6 10.6 3 12 3s2.7.6 3.5 1.5L20 7l1.5 5-3 1v7.5h-13V13l-3-1L4 7l4.5-2.5z M9 4.8c.4 2 1.5 3.2 3 3.2s2.6-1.2 3-3.2 M12 8v3 M9 15.5h6"
+const ACCENT = "#111114"
+const BLACK = "#17171B"
+const CHARCOAL = "#26262A"
+const BLACK_DEEP = "#000000"
+const BONE = "#EDE7DC"
+const INK = "#111213"
+const VS_PINK = "#E0457B"
 
 const STEPS = [
   {
@@ -32,7 +22,7 @@ const STEPS = [
   { t: "Enter your email", d: "Quick 30-second signup process.", icon: "M3 7l9 6 9-6 M3.5 5.5h17v13h-17z" },
   {
     t: "Complete the survey",
-    d: "Share your style preferences.",
+    d: "Share your shopping preferences.",
     icon: "M5 6a2 2 0 012-2h10a2 2 0 012 2v13a2 2 0 01-2 2H7a2 2 0 01-2-2V6z M9 10h6 M9 14h6",
   },
   {
@@ -42,31 +32,31 @@ const STEPS = [
   },
   {
     t: "Receive your discount",
-    d: "Delivered straight to your inbox.",
+    d: "Delivered straight to your inbox in time for Black Friday.",
     icon: "M8 21h8 M12 17v4 M7 4h10v5a5 5 0 01-10 0V4z M7 6H4v1a4 4 0 004 4 M17 6h3v1a4 4 0 01-4 4",
   },
 ]
 
 const CATEGORIES = [
   {
-    t: "Bras & Bralettes",
-    d: "Very Sexy push-ups, Body by Victoria T-shirt bras, wireless styles, and lace bralettes.",
-    icon: BRA_ICON,
+    t: "Black Friday Bras & Lingerie",
+    d: "Best-selling bras, panties, and lingerie sets at their lowest prices.",
+    icon: "M12 4l1.8 4.2L18 10l-4.2 1.8L12 16l-1.8-4.2L6 10l4.2-1.8z M18 16v4 M16 18h4",
   },
   {
-    t: "Panties & Underwear",
-    d: "Cheekies, thongs, and everyday cotton briefs — plus the famous multi-pack deals.",
-    icon: BRIEFS_ICON,
+    t: "Cozy Pajamas & Robes",
+    d: "Flannel PJ sets, satin sleepwear, and plush robes for the cold season.",
+    icon: "M9 4L4 7l2 3 2-1v11h8V9l2 1 2-3-5-3a3 3 0 01-6 0z",
   },
   {
-    t: "Fragrance & Body Mist",
-    d: "Bombshell eau de parfum, fine fragrance mists, and scented body lotions.",
-    icon: PERFUME_ICON,
+    t: "Christmas Fragrance Gift Sets",
+    d: "Signature perfumes, mists, and beauty gift sets for everyone on your list.",
+    icon: "M3 10h18v9a2 2 0 01-2 2H5a2 2 0 01-2-2v-9z M12 10v11 M3 14h18 M12 10c-2.5 0-4-1.2-4-2.8C8 5.5 10 5 12 7c2-2 4-1.5 4 .2 0 1.6-1.5 2.8-4 2.8z",
   },
   {
-    t: "PINK Loungewear & Sleep",
-    d: "PINK fleece hoodies, joggers, satin pajama sets, and cozy sleepwear.",
-    icon: HOODIE_ICON,
+    t: "Stocking Stuffers & Minis",
+    d: "Travel-size mists, lotions, lip gloss, and cozy socks.",
+    icon: "M10 3h4v3h-4z M9 6h6l1 3v10a2 2 0 01-2 2h-4a2 2 0 01-2-2V9l1-3z M8 13h8",
   },
 ]
 
@@ -77,7 +67,7 @@ const FAQS = [
   },
   {
     q: "How many do I need?",
-    a: "Complete 5+ deals to receive your reward. The more deals you complete, the faster you can receive your discount code toward your next Victoria's Secret order.",
+    a: "Complete 5+ deals to receive your reward. The more deals you complete, the faster you can receive your discount code.",
   },
   {
     q: "How long do they take?",
@@ -86,12 +76,12 @@ const FAQS = [
 ]
 
 const AVATARS = [
-  { src: "/avatars/vs-shopper-1.webp", alt: "Young woman with long honey-blonde wavy hair in a blush pink knit cardigan" },
-  { src: "/avatars/vs-shopper-2.webp", alt: "Young woman with long dark brown hair in a white ribbed top" },
-  { src: "/avatars/vs-shopper-3.webp", alt: "Young woman with shoulder-length black hair in a dusty rose satin blouse" },
+  { src: "/avatars/vs-shopper-1.webp", alt: "Shopper with wavy blonde hair in a pink knit sweater" },
+  { src: "/avatars/vs-shopper-2.webp", alt: "Shopper with natural curly hair in a cream sweater" },
+  { src: "/avatars/vs-shopper-3.webp", alt: "Shopper with long dark hair in a black turtleneck" },
 ]
 
-function Icon({ d, className = "w-6 h-6", color = ACCENT_STRONG }: { d: string; className?: string; color?: string }) {
+function Icon({ d, className = "w-6 h-6", color = ACCENT }: { d: string; className?: string; color?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -112,11 +102,11 @@ function Icon({ d, className = "w-6 h-6", color = ACCENT_STRONG }: { d: string; 
 
 function CTAButton({
   children,
-  pink = false,
+  dark = false,
   large = false,
 }: {
   children: React.ReactNode
-  pink?: boolean
+  dark?: boolean
   large?: boolean
 }) {
   return (
@@ -127,7 +117,7 @@ function CTAButton({
       className={`cta-btn group inline-flex items-center gap-2 rounded-full font-semibold ${
         large ? "px-9 py-4 text-lg" : "px-7 py-3.5 text-base"
       }`}
-      style={pink ? { backgroundColor: ACCENT, color: INK } : { backgroundColor: INK, color: "#FFFFFF" }}
+      style={dark ? { backgroundColor: ACCENT, color: "#FFFFFF" } : { backgroundColor: "#FFFFFF", color: INK }}
     >
       {children}
       <svg
@@ -154,7 +144,7 @@ function TimelineRow({ step, index }: { step: (typeof STEPS)[number]; index: num
         className={`hidden md:flex items-center ${leftSide ? "md:order-3 justify-start" : "md:order-1 justify-end"}`}
         aria-hidden="true"
       >
-        <span className="font-black text-6xl lg:text-7xl leading-none select-none" style={{ color: ACCENT_NUMERAL }}>
+        <span className="font-black text-6xl lg:text-7xl leading-none select-none" style={{ color: "#EEECE7" }}>
           0{index + 1}
         </span>
       </div>
@@ -165,8 +155,8 @@ function TimelineRow({ step, index }: { step: (typeof STEPS)[number]; index: num
           style={{
             backgroundColor: ACCENT,
             borderColor: ACCENT,
-            color: INK,
-            boxShadow: "0 8px 22px rgba(233,121,159,.4)",
+            color: "#FFFFFF",
+            boxShadow: "0 8px 22px rgba(17,17,20,.35)",
           }}
         >
           {index + 1}
@@ -181,9 +171,9 @@ function TimelineRow({ step, index }: { step: (typeof STEPS)[number]; index: num
         <div className={`flex items-start gap-4 ${leftSide ? "md:flex-row-reverse md:text-right" : ""}`}>
           <div
             className="w-11 h-11 shrink-0 rounded-xl flex items-center justify-center"
-            style={{ backgroundColor: ACCENT_TINT }}
+            style={{ backgroundColor: "#F0EDE7" }}
           >
-            <Icon d={step.icon} className="w-6 h-6" />
+            <Icon d={step.icon} color={ACCENT} className="w-6 h-6" />
           </div>
           <div className="flex-1">
             <h3 className="font-bold text-lg leading-snug">{step.t}</h3>
@@ -202,7 +192,7 @@ export default function VictoriasSecretRewardLander() {
     <div className="min-h-screen bg-white antialiased overflow-x-hidden font-sans" style={{ color: INK }}>
       <style>{`
         .cta-btn { transition: transform .15s ease, box-shadow .2s ease; }
-        .cta-btn:hover { transform: scale(1.04); box-shadow: 0 12px 32px rgba(28,25,23,0.22); }
+        .cta-btn:hover { transform: scale(1.04); box-shadow: 0 12px 32px rgba(0,0,0,0.22); }
         .cta-btn:active { transform: scale(0.98); }
 
         .orb { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: .5; animation: orbDrift 12s ease-in-out infinite; }
@@ -211,38 +201,38 @@ export default function VictoriasSecretRewardLander() {
           50% { transform: translate(30px, -30px) scale(1.15); }
         }
 
-        .drifter { position: absolute; opacity: .22; animation: drift 9s ease-in-out infinite; }
+        .drifter { position: absolute; opacity: .18; animation: drift 9s ease-in-out infinite; }
         @keyframes drift {
           0%, 100% { transform: translateY(0) rotate(0deg); }
           50% { transform: translateY(-22px) rotate(8deg); }
         }
 
         .cat-card { transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease; }
-        .cat-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 24px 48px rgba(17,24,39,0.12); }
+        .cat-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 24px 48px rgba(17,18,19,0.12); }
         .cat-card:hover .cat-icon { transform: translateY(-4px) rotate(4deg) scale(1.08); }
         .cat-icon { transition: transform .3s cubic-bezier(.34,1.56,.64,1); }
-        .card-shine { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(246,168,195,0.1) 47%, rgba(255,255,255,0.55) 52%, transparent 65%); background-size: 260% 100%; animation: cardShine 7s ease-in-out infinite; }
+        .card-shine { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 35%, rgba(17,17,20,0.05) 47%, rgba(255,255,255,0.55) 52%, transparent 65%); background-size: 260% 100%; animation: cardShine 7s ease-in-out infinite; }
         @keyframes cardShine { 0%, 55% { background-position: 135% 0; } 85%, 100% { background-position: -60% 0; } }
         .icon-bob { animation: iconBob 4.5s ease-in-out infinite; }
         @keyframes iconBob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-5deg); } }
-        .cat-spark { position: absolute; top: 16px; right: 18px; color: ${ACCENT}; animation: sparkTwinkle 3.4s ease-in-out infinite; }
-        @keyframes sparkTwinkle { 0%, 100% { transform: scale(.75) rotate(0deg); opacity: .35; } 50% { transform: scale(1.2) rotate(25deg); opacity: .9; } }
+        .cat-spark { position: absolute; top: 16px; right: 18px; color: #E0457B; animation: sparkTwinkle 3.4s ease-in-out infinite; }
+        @keyframes sparkTwinkle { 0%, 100% { transform: scale(.75) rotate(0deg); opacity: .15; } 50% { transform: scale(1.2) rotate(25deg); opacity: .45; } }
 
         .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s cubic-bezier(.16,1,.3,1); }
         .faq-body.open { grid-template-rows: 1fr; }
         .faq-inner { overflow: hidden; }
 
         .pulse-dot { animation: pulseDot 1.8s ease-in-out infinite; }
-        @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,.6); } 50% { box-shadow: 0 0 0 7px rgba(22,163,74,0); } }
+        @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,.6); } 50% { box-shadow: 0 0 0 7px rgba(74,222,128,0); } }
 
         .t-card { transition: transform .25s cubic-bezier(.16,1,.3,1), border-color .25s ease, box-shadow .25s ease; }
-        .t-card:hover { transform: translateY(-6px); border-color: rgba(233,121,159,.45); box-shadow: 0 18px 44px rgba(233,121,159,.18); }
-        .t-rail-fill { background: linear-gradient(180deg, ${ACCENT_PALE}, ${ACCENT_DEEP}); }
+        .t-card:hover { transform: translateY(-6px); border-color: rgba(17,17,20,.35); box-shadow: 0 18px 44px rgba(17,17,20,.12); }
+        .t-rail-fill { background: linear-gradient(180deg, #3A3A40, #111114); }
 
-        .spark { position: absolute; bottom: -12px; border-radius: 9999px; background: rgba(255,255,255,.85); animation: sparkRise linear infinite; }
+        .spark { position: absolute; bottom: -12px; border-radius: 9999px; background: rgba(255,255,255,.75); animation: sparkRise linear infinite; }
         @keyframes sparkRise {
           0% { transform: translateY(0) scale(1); opacity: 0; }
-          12% { opacity: .9; }
+          12% { opacity: .8; }
           100% { transform: translateY(-560px) scale(.3); opacity: 0; }
         }
 
@@ -252,33 +242,45 @@ export default function VictoriasSecretRewardLander() {
       `}</style>
 
       {/* ── HERO ────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ background: HERO_GRADIENT }}>
-        <div className="orb w-96 h-96 -top-24 -left-24" style={{ backgroundColor: "#FFFFFF", opacity: 0.45 }} />
-        <div className="orb w-80 h-80 top-1/3 -right-20" style={{ backgroundColor: ACCENT_DEEP, animationDelay: "-6s" }} />
+      <section
+        className="relative overflow-hidden"
+        style={{ background: `linear-gradient(170deg, ${CHARCOAL} 0%, ${BLACK} 50%, ${BLACK_DEEP} 100%)` }}
+      >
+        <div className="orb w-96 h-96 -top-24 -left-24" style={{ backgroundColor: "#3E3E46" }} />
+        <div
+          className="orb w-80 h-80 top-1/3 -right-20"
+          style={{ backgroundColor: VS_PINK, opacity: 0.35, animationDelay: "-6s" }}
+        />
         <div className="drifter left-[8%] top-[30%]">
-          <Icon d={BRA_ICON} color={INK} className="w-8 h-8" />
+          <Icon
+            d="M12 3v18 M4.2 7.5l15.6 9 M4.2 16.5l15.6-9 M9.5 4.5L12 6.5l2.5-2 M9.5 19.5l2.5-2 2.5 2"
+            color="#fff"
+            className="w-8 h-8"
+          />
         </div>
         <div className="drifter right-[10%] top-[18%]" style={{ animationDelay: "-3s" }}>
-          <Icon d={PERFUME_ICON} color={INK} className="w-8 h-8" />
+          <Icon
+            d="M3 10h18v9a2 2 0 01-2 2H5a2 2 0 01-2-2v-9z M12 10v11 M3 14h18"
+            color="#fff"
+            className="w-9 h-9"
+          />
         </div>
         <div className="drifter left-[16%] bottom-[12%]" style={{ animationDelay: "-5s" }}>
-          <Icon d={BRIEFS_ICON} color={INK} className="w-9 h-9" />
+          <Icon d="M3 12V4h8l10 10-8 8L3 12z M7.5 7.5h.01" color="#fff" className="w-8 h-8" />
         </div>
 
         <div className="relative mx-auto max-w-3xl px-6 pt-12 pb-20 md:pt-20 md:pb-24 text-center">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/50 backdrop-blur px-4 py-1.5 text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-green-600 pulse-dot" />
+          <div className="text-white">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-4 py-1.5 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-green-400 pulse-dot" />
               Applications Open
             </span>
             <h1 className="mt-6 font-black tracking-tight leading-[1.05] text-[1.51rem] min-[344px]:text-[1.67rem] min-[376px]:text-[1.84rem] min-[408px]:text-[2rem] min-[440px]:text-[2.17rem] min-[472px]:text-[2.33rem] min-[504px]:text-[2.49rem] min-[536px]:text-[2.66rem] min-[568px]:text-[2.82rem] min-[600px]:text-[2.99rem] min-[632px]:text-[3.15rem] min-[664px]:text-[3.31rem] min-[696px]:text-[3.48rem] min-[728px]:text-[3.69rem] text-balance">
               {"The Victoria's Secret Discounts They Don't Advertise"}
             </h1>
-            <p
-              className="mt-6 text-lg md:text-xl max-w-xl mx-auto leading-relaxed text-pretty"
-              style={{ color: "rgba(28,25,23,.8)" }}
-            >
-              {"Discover how shoppers are unlocking hidden discounts on Victoria's Secret bras, panties, fragrance, and PINK loungewear."}
+            <p className="mt-6 text-lg md:text-xl text-white/85 max-w-xl mx-auto leading-relaxed text-pretty">
+              Discover how shoppers are unlocking hidden discount codes on Black Friday bras, cozy pajamas, and
+              Christmas fragrance gift sets this holiday season.
             </p>
             <div className="mt-9 flex items-center justify-center gap-x-5 gap-y-9 flex-wrap">
               <CTAButton large>Apply Now</CTAButton>
@@ -287,25 +289,21 @@ export default function VictoriasSecretRewardLander() {
                   {AVATARS.map((a) => (
                     <span
                       key={a.src}
-  className="w-11 h-11 rounded-full border-2 border-white overflow-hidden inline-block shadow-md"
-  style={{ backgroundColor: ACCENT_DEEP }}
-  >
-  <img
-  src={a.src || "/placeholder.svg"}
-  alt={a.alt}
-  width={88}
-  height={88}
-  className="w-full h-full object-cover"
-  loading="eager"
-  decoding="async"
-  />
+                      className="block w-9 h-9 rounded-full border-2 border-white/60 overflow-hidden shrink-0"
+                      style={{ backgroundColor: "#3E3E46" }}
+                    >
+                      <Image
+                        src={a.src}
+                        alt={a.alt}
+                        width={160}
+                        height={160}
+                        priority
+                        className="w-full h-full object-cover"
+                      />
                     </span>
                   ))}
                 </div>
-                <span
-                  className="text-sm leading-tight max-w-[200px] text-left"
-                  style={{ color: "rgba(28,25,23,.78)" }}
-                >
+                <span className="text-white/80 text-sm leading-tight max-w-[200px] text-left">
                   {"Join 12,000+ shoppers who've already claimed their discounts"}
                 </span>
               </div>
@@ -318,7 +316,7 @@ export default function VictoriasSecretRewardLander() {
       <section className="relative overflow-hidden bg-white">
         <div className="relative mx-auto max-w-5xl px-6 py-16 md:py-20">
           <div className="text-center">
-            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: ACCENT_STRONG }}>
+            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: ACCENT }}>
               How it works
             </div>
             <h2 className="mt-3 font-black tracking-tight text-3xl md:text-5xl text-balance">
@@ -336,7 +334,7 @@ export default function VictoriasSecretRewardLander() {
           </div>
 
           <div className="mt-10 text-center">
-            <CTAButton pink large>
+            <CTAButton dark large>
               Apply Now
             </CTAButton>
           </div>
@@ -344,14 +342,14 @@ export default function VictoriasSecretRewardLander() {
       </section>
 
       {/* ── WHAT YOUR DISCOUNT COVERS ───────────────────── */}
-      <section style={{ backgroundColor: "#FFF6F9" }}>
+      <section style={{ backgroundColor: "#F7F7F8" }}>
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 text-center">
           <div>
-            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: ACCENT_STRONG }}>
-              Unlock rewards
+            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: VS_PINK }}>
+              Holiday savings
             </div>
             <h2 className="mt-3 font-black tracking-tight text-3xl md:text-5xl text-balance">
-              What You Can Do With Your Discount
+              What You Can Do With Your Discount This Holiday Season
             </h2>
           </div>
 
@@ -369,7 +367,7 @@ export default function VictoriasSecretRewardLander() {
                 </span>
                 <div
                   className="cat-icon w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center"
-                  style={{ backgroundColor: ACCENT_TINT }}
+                  style={{ backgroundColor: "#F0EDE7" }}
                 >
                   <div className="icon-bob" style={{ animationDelay: `${i * 0.6}s` }}>
                     <Icon d={c.icon} className="w-7 h-7" />
@@ -389,7 +387,7 @@ export default function VictoriasSecretRewardLander() {
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-6 py-16 md:py-20 text-center">
           <div>
-            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: ACCENT_STRONG }}>
+            <div className="text-sm font-semibold tracking-widest uppercase" style={{ color: ACCENT }}>
               Questions &amp; answers
             </div>
             <h2 className="mt-3 font-black tracking-tight text-3xl md:text-5xl text-balance">
@@ -419,7 +417,7 @@ export default function VictoriasSecretRewardLander() {
                     >
                       <path
                         d="M5 8l5 5 5-5"
-                        stroke={INK}
+                        stroke={openFaq === i ? "#fff" : INK}
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -439,7 +437,10 @@ export default function VictoriasSecretRewardLander() {
       </section>
 
       {/* ── FINALE ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ background: HERO_GRADIENT }}>
+      <section
+        className="relative overflow-hidden"
+        style={{ background: `linear-gradient(170deg, ${CHARCOAL} 0%, ${BLACK} 50%, ${BLACK_DEEP} 100%)` }}
+      >
         {[
           { l: "6%", s: 5, d: 7, delay: 0 },
           { l: "16%", s: 4, d: 9, delay: 2.2 },
@@ -463,25 +464,24 @@ export default function VictoriasSecretRewardLander() {
             aria-hidden="true"
           />
         ))}
-        <div className="orb w-96 h-96 -top-24 -left-24" style={{ backgroundColor: "#FFFFFF", opacity: 0.4 }} />
-        <div className="orb w-80 h-80 -bottom-24 -right-16" style={{ backgroundColor: ACCENT_DEEP, animationDelay: "-5s" }} />
+        <div className="orb w-96 h-96 -top-24 -left-24" style={{ backgroundColor: "#3E3E46", opacity: 0.35 }} />
+        <div
+          className="orb w-80 h-80 -bottom-24 -right-16"
+          style={{ backgroundColor: VS_PINK, opacity: 0.35, animationDelay: "-5s" }}
+        />
 
-        <div className="relative mx-auto max-w-4xl px-6 py-20 md:py-28 text-center">
+        <div className="relative mx-auto max-w-4xl px-6 py-20 md:py-28 text-center text-white">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/50 backdrop-blur px-4 py-1.5 text-sm font-medium">
-              <span className="w-2 h-2 rounded-full bg-green-600 pulse-dot" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-4 py-1.5 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-green-400 pulse-dot" />
               Applications Open
             </span>
             <h2 className="mt-6 font-black tracking-tight text-4xl md:text-6xl leading-[1.05] text-balance">
-              Ready to Start Saving?
+              Ready to Start Saving This Holiday Season?
             </h2>
-            <p
-              className="mt-4 text-lg max-w-xl mx-auto leading-relaxed text-pretty"
-              style={{ color: "rgba(28,25,23,.8)" }}
-            >
-              {
-                "Join thousands of shoppers who have already claimed their discount code. Your savings at Victoria's Secret are just a few clicks away."
-              }
+            <p className="mt-4 text-white/85 text-lg max-w-xl mx-auto leading-relaxed text-pretty">
+              Join thousands of shoppers who have already claimed their discount code before Black Friday. Your holiday
+              savings are just a few clicks away.
             </p>
           </div>
 

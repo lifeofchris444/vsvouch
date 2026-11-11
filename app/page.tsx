@@ -1,5 +1,9 @@
 import VictoriasSecretRewardLander from "@/components/victorias-secret-lander"
 
-export default function Page() {
-  return <VictoriasSecretRewardLander />
+export default function Home() {
+  return (
+    <main>
+      <VictoriasSecretRewardLander />
+    </main>
+  )
 }

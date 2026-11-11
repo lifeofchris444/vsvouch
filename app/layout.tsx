@@ -13,7 +13,7 @@ const SITE_URL = "https://www.victoriassecretdiscounts.com"
 const SITE_NAME = "Victoria's Secret Discounts"
 const TITLE = "The Victoria's Secret Discounts They Don't Advertise"
 const DESCRIPTION =
-  "Discover how shoppers are unlocking hidden discounts on Victoria's Secret bras, panties, fragrance, and PINK loungewear. Complete 5+ deals in five simple steps and get your discount delivered straight to your inbox."
+  "Discover how shoppers are unlocking hidden discount codes on Black Friday bras, cozy pajamas, and Christmas fragrance gift sets this holiday season. Complete 5+ deals in five simple steps and get your discount delivered straight to your inbox."
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -25,11 +25,14 @@ export const metadata: Metadata = {
     "Victoria's Secret promo code",
     "Victoria's Secret discounts",
     "Victoria's Secret deals",
-    "Victoria's Secret rewards program",
-    "Victoria's Secret bra discount",
-    "Victoria's Secret panty deals",
-    "Victoria's Secret fragrance sale",
-    "PINK loungewear savings",
+    "Victoria's Secret Black Friday deals",
+    "Victoria's Secret Black Friday sale",
+    "Victoria's Secret Christmas gifts",
+    "Victoria's Secret holiday sale",
+    "Victoria's Secret pajama deals",
+    "Victoria's Secret fragrance gift sets",
+    "Black Friday bra deals",
+    "stocking stuffers and minis",
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
@@ -58,10 +61,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1024,
         height: 1024,
-        alt: "Flat-lay of a pink lace bralette, matching satin panties, a pink fragrance mist bottle, and a folded pink fleece hoodie on a soft blush pink background",
+        alt: "Pink perfume and body mist bottles, folded satin pajamas and a blush robe beside pink-and-black striped gift boxes with pine sprigs and warm string lights on a charcoal background",
       },
     ],
   },
@@ -69,7 +72,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: [
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
   },
   other: {
     "apple-mobile-web-app-title": SITE_NAME,
@@ -77,7 +88,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#F6A8C3",
+  themeColor: "#17171B",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -92,7 +103,7 @@ export default function RootLayout({
     <html lang="en" className="bg-white">
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
-        <Analytics />
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   )
